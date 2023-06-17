@@ -12,8 +12,9 @@ git submodule foreach --recursive git checkout $TAG
 git submodule foreach --recursive git pull
 
 cd docker-environment
-cat .env.example > ../.env.example
-cat .env.example > ../.env
+cat .env-example > ../.env.example
+cat .env-example > ../.env
+cat .gitignore >> ..gitignore
 cat readme.md >> ../README.md
 
 make
