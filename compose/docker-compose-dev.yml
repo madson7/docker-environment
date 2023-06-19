@@ -6,6 +6,6 @@ services:
     build:
       context: ../../
       dockerfile: docker-environment/dockerfile/Dockerfile-${IMAGE}
-      target: runner
+      target: development
     ports:
       - ${LOCAL_PORT}:${LOCAL_PORT}
