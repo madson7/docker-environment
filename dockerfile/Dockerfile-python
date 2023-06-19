@@ -1,7 +1,7 @@
 ARG IMAGE_VERSION=${IMAGE_VERSION}
 ARG IMAGE_TYPE=${IMAGE_TYPE}
 
-FROM python:${IMAGE_VERSION}-${IMAGE_TYPE} as runner
+FROM python:${IMAGE_VERSION}-${IMAGE_TYPE} as development
 
 # Definir diretório de trabalho
 WORKDIR /app
