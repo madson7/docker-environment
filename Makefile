@@ -2,7 +2,7 @@
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 include $(ROOT_DIR)/.mk-lib/common.mk
 
-COMPOSE_BASE := docker-compose.yml
+COMPOSE_BASE := $(ROOT_DIR)/compose/docker-compose.yml
 
 DEV := -f $(COMPOSE_BASE)
 LOCAL_PROD := -f $(COMPOSE_BASE)

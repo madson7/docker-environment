@@ -1,0 +1,21 @@
+ARG IMAGE_VERSION=${IMAGE_VERSION}
+ARG IMAGE_TYPE=${IMAGE_TYPE}
+
+FROM python:${IMAGE_VERSION}-${IMAGE_TYPE} as base
+
+# Atualizar pacotes, baseada em Debian/Ubuntu ou Alpine ou Red Hat/CentOS/Fedora
+RUN if [ "$(cat /etc/os-release | grep -o 'Debian\|Ubuntu' | head -n1)" != 'Debian\|Ubuntu' ]; then echo 'nothing to do' ; else apt-get update && apt-get upgrade -y; fi
+RUN if [ "$(cat /etc/os-release | grep -o 'Alpine' | head -n1)" != "Alpine" ]; then echo 'nothing to do' ; else apk update && apk upgrade -U -a; fi
+RUN if [ "$(cat /etc/os-release | grep -o 'Red Hat\|CentOS\|Fedora' | head -n1)" != 'Red Hat\|CentOS\|Fedora' ]; then echo 'nothing to do' ; else yum update -y; fi
+
+# Instalar dependências do sistema
+RUN if [ "$(cat /etc/os-release | grep -o 'Debian\|Ubuntu' | head -n1)" != 'Debian\|Ubuntu' ]; then echo 'nothing to do' ; else apt-get install -y --no-install-recommends gcc; fi
+RUN if [ "$(cat /etc/os-release | grep -o 'Alpine' | head -n1)" != "Alpine" ]; then echo 'nothing to do' ; else apk add --no-cache gcc; fi
+RUN if [ "$(cat /etc/os-release | grep -o 'Red Hat\|CentOS\|Fedora' | head -n1)" != 'Red Hat\|CentOS\|Fedora' ]; then echo 'nothing to do' ; else yum install -y --no-install-recommends gcc; fi
+
+# Definir variáveis de ambiente para aumentar a segurança
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Definir diretório de trabalho
+WORKDIR /app
