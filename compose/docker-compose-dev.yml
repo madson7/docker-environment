@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  api:
+    container_name: ${APP_NAME}_api
+    image: "${CI_REGISTRY_IMAGE-local}/${APP_NAME}:${CI_COMMIT_SHORT_SHA-local}"
+    build:
+      context: ../../
+      dockerfile: docker-environment/dockerfile/Dockerfile-${IMAGE}
+      target: runner
+    ports:
+      - ${LOCAL_PORT}:${LOCAL_PORT}

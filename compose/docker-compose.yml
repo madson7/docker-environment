@@ -1,0 +1,19 @@
+version: '3.8'
+x-vars: &base-vars
+  APP_NAME: ${APP_NAME}
+  IMAGE: ${IMAGE}
+  IMAGE_VERSION: ${IMAGE_VERSION}
+  IMAGE_TYPE: ${IMAGE_TYPE}
+  LOCAL_PORT: ${LOCAL_PORT}
+  SECRET_KEY: ${SECRET_KEY}
+services:
+  api:
+    container_name: ${APP_NAME}_api
+    image: "${CI_REGISTRY_IMAGE-local}/${APP_NAME}:${CI_COMMIT_SHORT_SHA-local}"
+    build:
+      context: ../../
+      dockerfile: docker-environment/dockerfile/Dockerfile-${IMAGE}
+      args: 
+        << : *base-vars
+    environment:
+      << : *base-vars
