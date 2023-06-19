@@ -2,7 +2,7 @@
 Docker environment for develop and production
 
 ```
-bash <( curl https://raw.githubusercontent.com/madson7/docker-environment/main/install.sh ) -v 0.0.1
+bash <( curl https://raw.githubusercontent.com/madson7/docker-environment/main/install.sh ) -v 0.3.1
 ```
 
 ## Running docker environment
