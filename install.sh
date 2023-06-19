@@ -15,6 +15,7 @@ cd docker-environment
 cat .env-example > ../.env.example
 cat .env-example > ../.env
 cat .gitignore >> ../.gitignore
+cat .dockerignore >> ../.dockerignore
 cat readme.md >> ../README.md
 
 make
