@@ -27,4 +27,7 @@ COPY . /app
 
 # Instalar dependências node especificadas no package.json
 RUN npm install
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Executar o aplicativo
+RUN echo ${CMD} > ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+CMD [ "/bin/sh", "-c", "./entrypoint.sh" ]
