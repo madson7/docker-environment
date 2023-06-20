@@ -6,6 +6,7 @@ x-vars: &base-vars
   IMAGE_TYPE: ${IMAGE_TYPE}
   LOCAL_PORT: ${LOCAL_PORT}
   SECRET_KEY: ${SECRET_KEY}
+  CMD: ${CMD}
 services:
   api:
     container_name: ${APP_NAME}_api
